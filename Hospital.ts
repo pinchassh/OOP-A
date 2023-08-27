@@ -1,24 +1,39 @@
 class Person {
     firstName: string;
     lastName: string;
-    constructor(firstName: string, lastName: string) {
+    age: number;
+    address: string;
+    constructor(firstName: string, lastName: string, age: number, address: string) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
+        this.address = address;
     }
 }
 
 let IDpatient = 1;
 class Patient extends Person {
     patientID: number;
-    constructor(firstName: string, lastName: string, patientID: number = IDpatient++) {
-        super(firstName, lastName);
+    phoneNumbe:number;
+    emergencyContact:number; 
+    medicalHistory :Appointment[]
+
+    constructor(firstName: string, lastName: string, patientID: number = IDpatient++,phoneNumbe:number,emergencyContact:number,age:number,address:string) {
+        super(firstName, lastName,age,address);
         this.patientID = patientID;
+        this.phoneNumbe=phoneNumbe;
+        this.emergencyContact=emergencyContact;
+        this.medicalHistory =[] 
     }
 
     allDetails(): string {
         return `patientID: ${this.patientID},
             firstName: ${this.firstName},
             lastName:${this.lastName}.`;
+    }
+
+    addOfMedicalHistory(arr:Appointment):void{
+        this.medicalHistory.push(arr)
     }
 }
 
@@ -27,8 +42,8 @@ let IDdoctor = 1;
 class Doctor extends Person {
     doctorID: number;
     specialization: string;
-    constructor(firstName: string, lastName: string, specialization: string, doctorID: number = IDdoctor++) {
-        super(firstName, lastName);
+    constructor(firstName: string, lastName: string, specialization: string, doctorID: number = IDdoctor++,age:number,address:string) {
+        super(firstName, lastName,age,address);
         this.specialization = specialization;
         this.doctorID = doctorID;
     }
@@ -51,6 +66,8 @@ class Appointment {
         this.doctor = doctor;
         this.date = date;
         this.time = time;
+        addOfMedicalHistory()
+
     }
 
     allDetails(): void {
